@@ -8,9 +8,19 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
       name="viewport"
     />
+    <meta
+      name="keywords"
+      content="国庆, 70周年, 更换头像, 更换微信头像, 微信头像加框"
+    />
+    <meta
+      name="description"
+      content="庆祝祖国70周年生日快乐，给头像添加国旗等框。"
+    />
     <title>国庆换头像小助手</title>
-    <title>Document</title>
     <style>
+      h1 {
+        display: none;
+      }
       body {
         font-size: 14px;
         background-color: #ff4b3d;
@@ -71,14 +81,21 @@
         outline: none;
       }
 
-      #downloadImg {
+      #downloadImg,
+      .hsrj {
         width: 320px;
         display: block;
         margin: 0 auto 40px;
       }
+
+      .line {
+        margin: 60px auto 60px;
+        border-bottom: 2px dashed #fff;
+      }
     </style>
   </head>
   <body>
+    <h1>70周年国庆给微信添加头像框</h1>
     <p>点击下方选择头像框</p>
     <ul>
       <li><img src="head-1.png" /></li>
@@ -102,6 +119,14 @@
 
     <p>长按下方头像或鼠标右键点击下方头像保存</p>
     <img src="head-1.png" id="downloadImg" />
+
+    <p class="line"></p>
+
+    <p>经常网购，那你一定不要错过这款软件，网购，还能赚钱！</p>
+
+    <img class="hsrj" src="./hsrj2.jpg" />
+
+    <img class="hsrj" src="./hsrj.jpg" />
 
     <script>
       var canvas = document.getElementById("canvas");
@@ -161,6 +186,16 @@
 
       /*ios active伪类无效*/
       document.body.addEventListener("touchstart", function() {});
+    </script>
+
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?710d7c8e0f5c042f70d8c03e84bab161";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
     </script>
   </body>
 </html>
