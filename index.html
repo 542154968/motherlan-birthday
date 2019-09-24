@@ -18,6 +18,7 @@
           Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
           "微软雅黑", Arial, sans-serif;
       }
+      /*去除点击阴影*/
       body * {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
@@ -157,6 +158,9 @@
       document.querySelector("#download").addEventListener("click", function() {
         okImg.src = canvas.toDataURL("image/png");
       });
+
+      /*ios active伪类无效*/
+      document.body.addEventListener("touchstart", function() {});
     </script>
   </body>
 </html>
