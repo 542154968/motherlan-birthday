@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <title>国庆换头像小助手</title>
+    <title>Document</title>
+    <style>
+      body {
+        font-size: 14px;
+        background-color: #ff4b3d;
+        font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+          Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+          "微软雅黑", Arial, sans-serif;
+      }
+      body * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+      p {
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+      }
+      canvas {
+        display: block;
+        width: 320px;
+        height: 320px;
+        margin: 0 auto 40px;
+        background: transparent;
+      }
+      ul {
+        width: 100%;
+        max-width: 700px;
+        overflow: hidden;
+        margin: 0 auto 30px;
+        padding: 0;
+        list-style: none;
+      }
+
+      ul li {
+        box-sizing: border-box;
+        padding: 10px;
+        float: left;
+        width: 25%;
+      }
+      ul li:active {
+        transform: scale(0.9);
+      }
+      ul li img {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      button {
+        margin: 40px auto;
+        display: block;
+        width: 240px;
+        height: 60px;
+        color: #fff;
+        background: #f89c40;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+      }
+
+      #downloadImg {
+        width: 320px;
+        display: block;
+        margin: 0 auto 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>点击下方选择头像框</p>
+    <ul>
+      <li><img src="head-1.png" /></li>
+      <li><img src="head-2.png" /></li>
+      <li><img src="head3.png" /></li>
+      <li><img src="20190829-head2.png" /></li>
+    </ul>
+
+    <button id="btn">上传头像</button>
+    <p>请上传正方形的头像</p>
+    <input type="file" accept="image/*" hidden id="fileUpload" />
+
+    <canvas
+      id="canvas"
+      width="640"
+      height="640"
+      style="width: 320px; height:320px"
+    ></canvas>
+
+    <button id="download">生 成</button>
+
+    <p>长按下方头像或鼠标右键点击下方头像保存</p>
+    <img src="head-1.png" id="downloadImg" />
+
+    <script>
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var curImg = document.images[0];
+      var userImg = null;
+      var fileInput = document.querySelector("#fileUpload");
+      var okImg = document.querySelector("#downloadImg");
+
+      curImg.onload = function() {
+        drawImage(curImg);
+      };
+
+      resetCanvas();
+
+      function drawImage(img) {
+        ctx.drawImage(img, 0, 0, 640, 640);
+      }
+
+      function resetCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(255, 255, 255, 0)";
+      }
+
+      document.querySelector("#btn").addEventListener("click", function() {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener("change", function(event) {
+        var file = this.files[0];
+        if (file) {
+          var img = new Image();
+          img.onload = function() {
+            resetCanvas();
+            drawImage(img);
+            drawImage(curImg);
+            userImg = img;
+          };
+          img.src = URL.createObjectURL(file);
+        }
+      });
+
+      document.querySelector("ul").addEventListener("click", function(event) {
+        var img = event.target;
+        if (img.nodeName !== "IMG") {
+          return;
+        }
+        resetCanvas();
+        userImg && drawImage(userImg);
+        drawImage(img);
+        curImg = img;
+      });
+
+      document.querySelector("#download").addEventListener("click", function() {
+        okImg.src = canvas.toDataURL("image/png");
+      });
+    </script>
+  </body>
+</html>
