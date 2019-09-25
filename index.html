@@ -152,12 +152,6 @@
       var fileInput = document.querySelector("#fileUpload");
       var okImg = document.querySelector("#downloadImg");
 
-      curImg.onload = function() {
-        drawImage(curImg);
-      };
-
-      resetCanvas();
-
       function drawImage(img) {
         ctx.drawImage(img, 0, 0, 640, 640);
       }
@@ -167,6 +161,12 @@
         ctx.fillStyle = "rgba(255, 255, 255, 0)";
       }
 
+      resetCanvas();
+
+      curImg.onload = function() {
+        drawImage(curImg);
+      };
+
       document.querySelector("#btn").addEventListener("click", function() {
         fileInput.click();
       });
@@ -175,13 +175,13 @@
         var file = this.files[0];
         if (file) {
           var img = new Image();
+          img.src = URL.createObjectURL(file);
           img.onload = function() {
             resetCanvas();
             drawImage(img);
             drawImage(curImg);
             userImg = img;
           };
-          img.src = URL.createObjectURL(file);
         }
       });
 
