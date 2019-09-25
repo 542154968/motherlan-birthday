@@ -24,7 +24,7 @@
       body {
         margin: 0;
         font-size: 14px;
-        background-color: #ff4b3d;
+        background: linear-gradient(#ff4b3d, #ffde28) #ff4b3d;
         font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
           Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
           "微软雅黑", Arial, sans-serif;
@@ -33,10 +33,11 @@
       body * {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       }
-      p {
+      p,
+      p a {
         color: #fff;
         text-align: center;
-        font-weight: bold;
+        /* font-weight: bold; */
       }
       canvas {
         display: block;
@@ -74,7 +75,8 @@
         width: 240px;
         height: 60px;
         color: #fff;
-        background: #f89c40;
+        background: linear-gradient(#ffe984, #ed8917) #ed8917;
+
         font-size: 22px;
         font-weight: bold;
         border-radius: 12px;
@@ -82,11 +84,20 @@
         outline: none;
       }
 
+      button:active {
+        transform: scale(0.9);
+      }
+
       #downloadImg,
       .hsrj {
         width: 320px;
         display: block;
         margin: 0 auto 40px;
+      }
+
+      .hsrj {
+        width: 300px;
+        border-radius: 8px;
       }
 
       .line {
@@ -105,8 +116,9 @@
       <li><img src="20190829-head2.png" /></li>
     </ul>
 
+    <p>请上传<strong>正方形</strong>的头像 比如微信头像</p>
     <button id="btn">上传头像</button>
-    <p>请上传正方形的头像</p>
+
     <input type="file" accept="image/*" hidden id="fileUpload" />
 
     <canvas
@@ -123,11 +135,13 @@
 
     <p class="line"></p>
 
-    <p>经常网购，那你一定不要错过这款软件，网购，还能赚钱！</p>
+    <p>
+      <a href="https://www.hsrj.group" target="_blank"
+        >大量淘宝天猫隐藏优惠券免费发放，点我！</a
+      >
+    </p>
 
     <img class="hsrj" src="./hsrj2.jpg" />
-
-    <img class="hsrj" src="./hsrj.jpg" />
 
     <script>
       var canvas = document.getElementById("canvas");
@@ -187,6 +201,35 @@
 
       /*ios active伪类无效*/
       document.body.addEventListener("touchstart", function() {});
+
+      // (function() {
+      //   var start = [];
+      //   var begin = false;
+
+      //   function getDistance(p1, p2) {
+      //     var x = p2.pageX - p1.pageX,
+      //       y = p2.pageY - p1.pageY;
+      //     return Math.sqrt(x * x + y * y);
+      //   }
+
+      //   canvas.addEventListener("touchstart", function(event) {
+      //     start = event.touches;
+      //     begin = true;
+      //   });
+
+      //   canvas.addEventListener("touchmove", function(event) {
+      //     if (begin && event.touches.length >= 2) {
+      //       var curTouches = event.touches;
+      //       var scale =
+      //         getDistance(now[0], now[1]) / getDistance(start[0], start[1]);
+      //       console.log(scale);
+      //     }
+      //   });
+
+      //   canvas.addEventListener("touchend", function(event) {
+      //     begin = false;
+      //   });
+      // })();
     </script>
 
     <script>
